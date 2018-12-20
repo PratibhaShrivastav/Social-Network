@@ -6,7 +6,7 @@ from groups.models import Group
 
 
 class Creategroup(CreateView):
-    model= Group
+    model=Group
     fields=('name','description')
 
 class Singlegroup(DetailView):
