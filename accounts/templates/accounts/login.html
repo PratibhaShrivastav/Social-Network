@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block content %}
+    <div class="containerssignup">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="display-4 text-center" id="login"> Login </div>
+            <br>
+            <br>
+            <div class="fieldWrapper">
+               {% for field in form %}
+                   <div class="fields">  {{ field.label_tag }}{% if field.field.required %}<span class="required">*</span>{% endif %}</div>
+                   {{ field }}
+                    {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                    {% if field.errors %}
+                    <p class="help">{{ field.errors|safe }}</p>
+                    {% endif %}
+                    <br>
+                {% endfor %}
+                 </div>
+                <br>
+                <br>
+            <input type="submit" class="btn btn-primary btn-lg" value="Login" id="loginbtn">
+        </form>
+    </div>
+{% endblock %}
