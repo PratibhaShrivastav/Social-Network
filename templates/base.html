@@ -50,12 +50,12 @@
           </a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url "groups:all"%}">
         Groups
           </a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url "posts:create"%}">
          Create group
           </a>
       </li>
@@ -68,7 +68,7 @@
       {% else %}
      <ul class="navbar-nav navbar-right">
       <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url "groups:all"%}">
         Groups
           </a>
       </li>

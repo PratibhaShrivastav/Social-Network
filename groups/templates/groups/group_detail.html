@@ -21,7 +21,7 @@
 {% block group_content%}
 
     <div class="col-md-8">
-        {% if group.posts.count==0 %}
+        {% if not group.posts.count %}
             <h3> No posts yet</h3>
         {% else %}
             {% for post in group.posts.all%}
