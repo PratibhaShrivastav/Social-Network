@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import CreateView,ListView,DetailView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from braces.views import SelectRelatedMixin
 from django.http import Http404
 from django.contrib import messages
 # Create your views here.
+
 
 from posts.models import Post
 from django.forms import forms
@@ -19,6 +20,7 @@ class PostList(SelectRelatedMixin,ListView):
 class UserPosts(ListView):
     model=Post
     template_name='posts/user_post_list.html'
+    success_url=reverse_lazy("posts:for_user",username=User.username)
 
     def get_queryset(self):
         try:
@@ -28,25 +30,30 @@ class UserPosts(ListView):
         else:
             self.post_user.posts.all
 
-    def get_context_data(self, **kwargs):
+    """def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["post_user"] = self.post_user
-        return context
+        return context"""
 
 
 class PostDetail(SelectRelatedMixin,DetailView):
     model=Post
     select_related=('user','group')
+    context_object_name="post"
 
     def get_queryset(self):
         queryset=super().get_queryset()
         return queryset.filter(user__username__iexact=self.kwargs.get('username'))
-                                                  #  or self.user.username check
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user"] = User
+        return context
+                                                  
 
 class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
     model=Post
     fields=('group','message')
-   # success_url=reverse_lazy('posts:all')
 
     def form_valid(self,form):
         self.object=form.save(commit=False)

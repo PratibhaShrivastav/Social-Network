@@ -9,6 +9,10 @@ background-size: 400% 400%;
 animation: Gradient 15s ease infinite;
 }
 
+a:hover{
+	color:orange;
+}
+
 @-webkit-keyframes Gradient {
 	0% {
 		background-position: 0% 50%
