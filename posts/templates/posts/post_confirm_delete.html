@@ -4,7 +4,7 @@
 
     <h3> Are you sure you want to delete this post ? </h3>
 
-    <a href="{% url "posts:delete" pk=object.pk %}" class="btn btn-lg btn-danger">Delete </a>
-    <a href="{% url "posts:single" username=post.user.username pk=object.pk%}" class="btn btn-lg btn-primary"> Cancel </a>
+    <a href="{% url 'posts:delete' pk=object.pk %}" class="btn btn-lg btn-danger">Delete </a>
+    <a href="{% url 'posts:single' username=post.user.username pk=object.pk%}" class="btn btn-lg btn-primary"> Cancel </a>
 
 {% endblock %}
