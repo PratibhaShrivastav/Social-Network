@@ -5,14 +5,14 @@
                 {% if post.group %}
                     <h3>  Posted in: {{post.group.name}}</h3>
                 {% endif %}
-                {% if user.is_authenticated %}
-                <h2><a href="{% url "posts:for_user" username=post.user.username%}">Your Posts </a></h2>
-                <h2><a href="{% url "posts:single" username=post.user.username pk=post.pk%}">Post details </a></h2>
+                {% if request.user.is_authenticated %}
+                <h2><a href="{% url 'posts:for_user' username=post.user.username %}">Your Posts </a></h2>
+                <h2><a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">Post details </a></h2>
                 {% endif %}
         </div>
         <div class="media-footer">
-            {% if user.is_authenticated and user == post.user %}
-                 <a href="{% url "posts:delete" pk=post.pk %}" class="btn btn-lg btn-danger"> Delete Post </a>
+            {% if request.user.is_authenticated and request.user == post.user %}
+                 <a href="{% url 'posts:delete' pk=post.pk %}" class="btn btn-lg btn-danger"> Delete Post </a>
             {% endif %}
         </div>
     </div>
