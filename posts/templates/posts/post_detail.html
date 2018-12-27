@@ -10,8 +10,8 @@
         <h4> Posted on: {{post.created_at|date:"M D, Y"}} </h4>
      <br>
      <br>
-    {% if user.is_authenticated and post.user == user %}
-        <a href="{% url "posts:delete" pk=post.pk %}" class="btn btn-lg btn-danger"> Delete Post </a>
+    {% if request.user.is_authenticated and post.user == request.user %}
+        <a href="{% url 'posts:delete' pk=post.pk %}" class="btn btn-lg btn-danger"> Delete Post </a>
         <a href="#" class="btn btn-lg btn-info"> Update Post </a>
     {% endif %}
 {% endblock %}

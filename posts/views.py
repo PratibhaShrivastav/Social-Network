@@ -28,18 +28,18 @@ class UserPosts(ListView):
         except User.DoesNotExist:
             return Http404
         else:
-            self.post_user.posts.all
+            self.post_user.posts.all()
 
-    """def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["post_user"] = self.post_user
-        return context"""
+        context['post_user'] = self.post_user
+        return context
 
 
 class PostDetail(SelectRelatedMixin,DetailView):
     model=Post
     select_related=('user','group')
-    context_object_name="post"
+    context_object_name='post'
 
     def get_queryset(self):
         queryset=super().get_queryset()
@@ -47,7 +47,7 @@ class PostDetail(SelectRelatedMixin,DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["user"] = User
+        context['user'] = User
         return context
                                                   
 
@@ -69,10 +69,10 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,DeleteView):
 
     def get_queryset(self):
         queryset= super().get_queryset()
-        return queryset.filter(user_id=self.user.id)
+        return queryset.filter(user_id=self.request.user.id)
 
     def delete(self,*args,**kwargs):
-        messages.success(self.request,"Post deleted successfully")
+        messages.success(self.request,'Post deleted successfully')
         return super().delete(*args,**kwargs)
 
 
