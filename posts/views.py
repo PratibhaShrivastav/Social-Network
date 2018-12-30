@@ -17,24 +17,29 @@ class PostList(SelectRelatedMixin,ListView):
     model=Post
     select_related=('user','group')
 
-class UserPosts(ListView):
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        print(queryset)
+        return queryset
+
+class UserPosts(SelectRelatedMixin,ListView):
     model=Post
     template_name='posts/user_post_list.html'
-    success_url=reverse_lazy("posts:for_user",username=User.username)
 
     def get_queryset(self):
+        #print(self.kwargs)
         try:
-            self.post_user=User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
+            self.post_user=Post.objects.filter(user__username__iexact=self.kwargs.get('username'))#User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
+            print(self.post_user.all())
         except User.DoesNotExist:
             return Http404
         else:
-            self.post_user.posts.all()
+            return self.post_user.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['post_user'] = self.post_user
+        context['post_user'] = self.kwargs.get('username')
         return context
-
 
 class PostDetail(SelectRelatedMixin,DetailView):
     model=Post
@@ -73,7 +78,7 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,DeleteView):
 
     def delete(self,*args,**kwargs):
         messages.success(self.request,'Post deleted successfully')
-        return super().delete(*args,**kwargs)
+        return super().delete(self,*args,**kwargs)
 
 
 

@@ -9,5 +9,5 @@ urlpatterns = [
     re_path(r'by/(?P<username>[-\w]+)/$',UserPosts.as_view(),name='for_user'),
     #path('by/<slug:username>/',UserPosts.as_view(),name='for_user'),
     re_path(r'by/(?P<username>[-\w]+)/(?P<pk>\d+)/$',PostDetail.as_view(),name='single'),
-    re_path(r'delete/(?P<pk>\d+)',DeletePost.as_view(),name='delete'),
+    re_path(r'delete/(?P<pk>\d+)/$',DeletePost.as_view(),name='delete'),
 ]
