@@ -19,7 +19,6 @@ class PostList(SelectRelatedMixin,ListView):
 
     def get_queryset(self):
         queryset = Post.objects.all()
-        print(queryset)
         return queryset
 
 class UserPosts(SelectRelatedMixin,ListView):
@@ -27,10 +26,8 @@ class UserPosts(SelectRelatedMixin,ListView):
     template_name='posts/user_post_list.html'
 
     def get_queryset(self):
-        #print(self.kwargs)
         try:
-            self.post_user=Post.objects.filter(user__username__iexact=self.kwargs.get('username'))#User.objects.prefetch_related('posts').get(username__iexact=self.kwargs.get('username'))
-            print(self.post_user.all())
+            self.post_user=Post.objects.filter(user__username__iexact=self.kwargs.get('username'))
         except User.DoesNotExist:
             return Http404
         else:
@@ -74,15 +71,9 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,DeleteView):
 
     def get_queryset(self):
         queryset= super().get_queryset()
-        return queryset.filter(user_id=self.request.user.id)
+        return queryset.filter(user=self.request.user)
 
     def delete(self,*args,**kwargs):
         messages.success(self.request,'Post deleted successfully')
-        return super().delete(self,*args,**kwargs)
-
-
-
-
-
-
+        return super().delete(*args,**kwargs)
 
