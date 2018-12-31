@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,ListView,DetailView,DeleteView
+from django.views.generic import CreateView,ListView,DetailView,DeleteView,UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy,reverse
 from braces.views import SelectRelatedMixin
@@ -62,6 +62,10 @@ class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
         self.object.user=self.request.user
         self.object.save()
         return super().form_valid(form)
+
+class UpdatePost(LoginRequiredMixin,UpdateView):
+    model=Post
+    fields=('group','message')
 
 
 class DeletePost(LoginRequiredMixin,SelectRelatedMixin,DeleteView):

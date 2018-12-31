@@ -1,11 +1,6 @@
 {% extends "posts/post_base.html" %}
 
 <!--{% for post in post_list %}-->
-    {% block prepost %}
-        <div class="col-md-4">
-        <h2> @{{post_user}}</h2>
-        </div>
-    {% endblock %}
 
     {% block post_content %}
         {% for post in post_list %}
