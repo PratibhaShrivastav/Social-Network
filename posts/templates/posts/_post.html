@@ -1,13 +1,15 @@
 <div class="post-media">
-    <strong>{{post.user.username}}</strong>
+    <h2><b>{{post.user.username}}</b></h2>
+    <br>
         <div class="media-body">
-            <h3> {{post.message_html|safe}}</h3>
+            <h4> <U>{{post.message_html|safe}}</U></h4>
                 {% if post.group %}
-                    <h3>  Posted in: {{post.group.name}}</h3>
+                    <h4>  Posted in: {{post.group.name}}</h4>
+                    <br>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                <h2><a href="{% url 'posts:for_user' username=post.user.username %}">Your Posts </a></h2>
-                <h2><a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">Post details </a></h2>
+                <h5><a href="{% url 'posts:for_user' username=post.user.username %}">All Posts </a></h5>
+                <h5><a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">Post details </a></h5>
                 {% endif %}
         </div>
         <div class="media-footer">

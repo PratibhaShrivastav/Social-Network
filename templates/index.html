@@ -1,6 +1,36 @@
 {% extends 'base.html'%}
+{% load static %}
+{% block extracss %}
+<link rel="stylesheet" href={% static "css/bird.css"%}>
+{% endblock %}
+
 {% block content %}
 
-<div class="display-3"> Welcome to social media website </div>
+<div class="display-3"> Welcome to Connecto </div>
+<hr>
+<div class="globe">
+    <div class="bird">
+        <div class="body">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="beak"><div></div></div>
+        <div class="feet"></div>
+        <div class="wire"></div>
+        </div>
+        <div class="hills"></div>
+        <div class="cloud"></div>
+        <div class="cloud small"></div>
+    </div>
+</div>
+{% if user.is_authenticated %}
+<div class="display-4"> Hey {{user.username}}!</div>
+{% else %}
+<div >
+<br>
+<br>
+<a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}">Login </a>&nbsp;&nbsp;
+<a class="btn btn-success btn-lg" href="{% url 'accounts:signup' %}">Signup </a>
+</div>
+{% endif %}
 
 {% endblock %}

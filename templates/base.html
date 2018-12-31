@@ -12,6 +12,10 @@
     <title>Index Page</title>
     <link rel="stylesheet" href={% static "css/base.css"%}>
 
+    {% block extracss %}
+    {% endblock %}
+    
+
     <!--<script src="{% static "js/base.js"%}"> </script>-->
 
      <!-- jQuery library -->
@@ -28,7 +32,7 @@
     <body>
 
   <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href={% url "home"%}>Connecto</a>
+  <a class="navbar-brand" href="{% url "home"%}" id="two">Connecto</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -45,22 +49,27 @@
 
    <ul class="navbar-nav navbar-right">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url "posts:all" %}">
+        <a class="nav-link" href="{% url "posts:all" %}" id="one">
           Posts
           </a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href="{% url "groups:all"%}">
+        <a class="nav-link" href="{% url "groups:all"%}" id="one">
         Groups
           </a>
+       <li class="nav-item active">
+        <a class="nav-link" href="{% url "posts:create" %}" id="one">
+          New Post
+          </a>
+      </li>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href="{% url "posts:create"%}">
+        <a class="nav-link" href="{% url "groups:create"%}" id="one">
          Create group
           </a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href={% url "accounts:logout"%}>
+        <a class="nav-link" href="{% url "accounts:logout"%}" id="one">
          Logout
           </a>
       </li>
@@ -68,17 +77,17 @@
       {% else %}
      <ul class="navbar-nav navbar-right">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url "groups:all"%}">
+        <a class="nav-link" href="{% url "groups:all"%}" id="one">
         Groups
           </a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href={% url "accounts:login"%}>
+        <a class="nav-link" href="{% url "accounts:login"%}" id="one">
          Login
           </a>
       </li>
         <li class="nav-item active">
-        <a class="nav-link" href={% url "accounts:signup"%}>
+        <a class="nav-link" href="{% url "accounts:signup"%}" id="one">
          Sign up
           </a>
       </li>
@@ -92,7 +101,7 @@
 </div>
  {% block content%}
 
-    {% endblock %}
-
+{% endblock %}
+  
   </body>
 </html>

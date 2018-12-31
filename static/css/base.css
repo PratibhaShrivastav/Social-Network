@@ -1,54 +1,19 @@
 body {
 font-family: 'Source Sans Pro', sans-serif;
-width: 100wh;
-height: 90vh;
-background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-background-size: 400% 400%;
--webkit-animation: Gradient 15s ease infinite;
--moz-animation: Gradient 15s ease infinite;
-animation: Gradient 15s ease infinite;
 }
-
+a {
+    color: darkblue;
+}
 a:hover{
 	color:orange;
 }
 
-@-webkit-keyframes Gradient {
-	0% {
-		background-position: 0% 50%
-	}
-	50% {
-		background-position: 100% 50%
-	}
-	100% {
-		background-position: 0% 50%
-	}
+#one:hover{
+    color:orange;
 }
-
-@-moz-keyframes Gradient {
-	0% {
-		background-position: 0% 50%
-	}
-	50% {
-		background-position: 100% 50%
-	}
-	100% {
-		background-position: 0% 50%
-	}
+#two:hover{
+    color:orange;
 }
-
-@keyframes Gradient {
-	0% {
-		background-position: 0% 50%
-	}
-	50% {
-		background-position: 100% 50%
-	}
-	100% {
-		background-position: 0% 50%
-	}
-}
-  
 .navbar-brand {
     font-size: 1.6em;
     color: orange ;
@@ -82,4 +47,27 @@ nav {
 }
 #login {
     margin-right: 17%;
+}
+.post-media {
+	border: 6px solid #01c7be;
+    padding-top:2px;
+    padding-left: 10px;
+    margin-top: 15px;
+}
+.content {
+    margin-left: 28%;
+    margin-top:1%;
+}
+.createnewgrpbtn {
+    margin-left: auto;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.form {
+    margin-left:25%;
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: 20px;
 }
