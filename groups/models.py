@@ -16,7 +16,7 @@ class Group(models.Model):
     slug=models.SlugField(allow_unicode=True,unique=True)
     description=models.TextField(blank=True,default='')
     description_html=models.TextField(editable=False,default='',blank=True)
-    members=models.ManyToManyField(User,related_name="Memberships")
+    members=models.ManyToManyField(User,through="Groupmember")
 
     def __str__(self):
         return self.name
@@ -41,5 +41,5 @@ class Groupmember(models.Model):
         return self.user.username
     
     class Meta:
-        unique_together=['group','user']
+        unique_together=('group','user')
 

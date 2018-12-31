@@ -4,6 +4,7 @@ from groups.models import Group,Groupmember
 
 
 admin.site.register(Group)
+admin.site.register(Groupmember)
 
 class GroupmemberInline(admin.TabularInline):
     model = Groupmember

@@ -29,7 +29,6 @@ class JoinGroup(LoginRequiredMixin,RedirectView):
 
     def get(self, request, *args, **kwargs):
         group=get_object_or_404(Group,slug=self.kwargs.get('slug'))
-
         try:
             Groupmember.objects.create(user=self.request.user,group=group)
         except IntegrityError:
