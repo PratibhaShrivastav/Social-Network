@@ -9,6 +9,9 @@ import misaka
 User=get_user_model()
 
 class Post(models.Model):
+
+    """by specifying User as Foreign Key, we're using the builtin User model of django."""  
+
     user=models.ForeignKey(User,related_name='posts',on_delete=models.CASCADE)
     message=models.TextField()
     message_html=models.TextField(editable=False)

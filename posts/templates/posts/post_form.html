@@ -6,7 +6,7 @@
 {% block post_content %}
 <div class="form">
     <form method="POST">
-        {%csrf_token %}
+        {% csrf_token %}
         {{form|crispy}}
         <input type="submit" class="btn btn-large btn-info" value="Create post">
     </form>

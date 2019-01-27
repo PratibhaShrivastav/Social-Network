@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
+
 class HomePage(TemplateView):
     template_name='index.html'
 

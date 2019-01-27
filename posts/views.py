@@ -11,16 +11,24 @@ from django.contrib import messages
 from posts.models import Post
 from django.forms import forms
 from django.contrib.auth import get_user_model
+
+"""returns the active User model"""
 User=get_user_model()
 
+
+"""This view is used to get the list of all the posts""" 
 class PostList(SelectRelatedMixin,ListView):
     model=Post
+
+    """used to effectively extract values of Foreign Key fields"""
     select_related=('user','group')
 
     def get_queryset(self):
         queryset = Post.objects.all()
         return queryset
 
+
+"""This view is used to get user specific posts"""
 class UserPosts(SelectRelatedMixin,ListView):
     model=Post
     template_name='posts/user_post_list.html'
@@ -38,6 +46,8 @@ class UserPosts(SelectRelatedMixin,ListView):
         context['post_user'] = self.kwargs.get('username')
         return context
 
+
+"""This view is used to get the complete details of a post"""
 class PostDetail(SelectRelatedMixin,DetailView):
     model=Post
     select_related=('user','group')
@@ -53,6 +63,7 @@ class PostDetail(SelectRelatedMixin,DetailView):
         return context
                                                   
 
+"""This view is used for creation of a new post"""
 class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
     model=Post
     fields=('group','message')
@@ -63,11 +74,14 @@ class CreatePost(LoginRequiredMixin,SelectRelatedMixin,CreateView):
         self.object.save()
         return super().form_valid(form)
 
+
+"""This view is used for updating or editing an existing post"""
 class UpdatePost(LoginRequiredMixin,UpdateView):
     model=Post
     fields=('group','message')
 
 
+"""This view is used for the deletion of a post"""
 class DeletePost(LoginRequiredMixin,SelectRelatedMixin,DeleteView):
     model=Post
     success_url=reverse_lazy('posts:all')
