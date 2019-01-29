@@ -1,5 +1,7 @@
 {% extends 'posts/post_base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block prepost %}
     <div class="col-md-4">
      <h2> Posted by : {{post.user.username }} </h3>
@@ -14,4 +16,31 @@
         <a href="{% url 'posts:delete' pk=post.pk %}" class="btn btn-lg btn-danger"> Delete Post </a>
         <a href="{% url 'posts:edit' pk=post.pk %}" class="btn btn-lg btn-info"> Update Post </a>
     {% endif %}
+    <h5>Comments:</h5>
+    {% if post.comments %}  
+        {% for comment in post.comments.all %}
+            <b>{{comment.author}}</b>&nbsp-
+            {{comment.text|safe}}
+            {% if comment.author == request.user %}
+                <form method="POST" action="{% url 'posts:deletecomment' username=post.user.username postpk=post.pk pk=comment.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger" name="submit">Delete</button>
+                </form>
+            {% endif %}
+            <br>
+        {% endfor %}
+    {% else %}
+        <p> No comments yet </p>
+    {% endif %}
+    <br>
 {% endblock %}
+
+{% if request.user.is_authenticated %}
+{% block post_post %}
+    <form method="POST" action="{% url 'posts:addcomment' username=post.user.username pk=post.pk%}">
+        {% csrf_token %}
+        <input type="text" name="text">&nbsp;&nbsp;
+        <input type="submit" class="btn btn-sm btn-warning" value="Add comment">
+    </form>
+{% endblock %}
+{% endif %}

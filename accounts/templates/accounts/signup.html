@@ -14,6 +14,11 @@
                     <p class="help">{{ field.help_text|safe }}</p>
                     {% endif %}
                 {% endfor %}
+                {% if form.errors %}
+                    {% for error in form.errors %}
+                        <p style="color:red">{{error}} has some error </p>
+                    {% endfor %}
+                {% endif %}
                  </div>
                 <br>
             <input type="submit" class="btn btn-primary btn-lg" value="Sign up" id="signupbtn">

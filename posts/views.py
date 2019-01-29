@@ -5,10 +5,11 @@ from django.urls import reverse_lazy,reverse
 from braces.views import SelectRelatedMixin
 from django.http import Http404
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
-from posts.models import Post
+from posts.models import Post,Comment
 from django.forms import forms
 from django.contrib.auth import get_user_model
 
@@ -95,3 +96,33 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,DeleteView):
         messages.success(self.request,'Post deleted successfully')
         return super().delete(*args,**kwargs)
 
+
+"""This view is used for comment adding"""
+class AddComment(LoginRequiredMixin,CreateView):
+    model=Comment
+    fields=('text',)
+    #;success_url=reverse_lazy('posts:all',kwargs={'username'})
+
+    def form_valid(self, form):
+        post=get_object_or_404(Post,pk=self.kwargs['pk'])
+        self.object=form.save(commit=False)
+        self.object.author=self.request.user
+        self.object.post=post
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        post=get_object_or_404(Post,pk=self.kwargs['pk'])
+        username = post.user.username
+        pk = post.pk
+        return reverse_lazy('posts:single',kwargs={'username':username,'pk':pk})
+
+
+"""This view is for updating elements"""
+class DeleteComment(LoginRequiredMixin,DeleteView):
+    model=Comment
+    
+    def get_success_url(self):
+        post=get_object_or_404(Post,pk=self.kwargs['postpk'])
+        username = post.user.username
+        pk = post.pk
+        return reverse_lazy('posts:single',kwargs={'username':username,'pk':pk})
