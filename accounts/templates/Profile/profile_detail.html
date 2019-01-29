@@ -1,0 +1,18 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="card">
+        {% if profile.profile_pic %}
+            <img src="{% static 'images/profile_pictures/{{profile.profile_pic}}' %}" alt="Your picture" style="width:100%">
+        {% else %}
+            <img src="{% static 'images/profile_pictures/default.png' %}" alt="Your picture" style="width:100%">
+        {% endif %}
+        <h1>{{profile.user.username}}</h1>
+        <p>{{profile.gender}}</p>
+        <p>{{profile.user.email}}</p>
+        <p>{{profile.contact}}</p>
+    </div>
+{% endblock %}

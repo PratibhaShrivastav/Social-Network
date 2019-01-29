@@ -2,7 +2,7 @@ body {
 font-family: 'Source Sans Pro', sans-serif;
 }
 a {
-    color: darkblue;
+    color:darkblue;
 }
 a:hover{
 	color:orange;
@@ -18,11 +18,20 @@ a:hover{
     font-size: 1.6em;
     color: orange ;
     font-weight: bold;
+    vertical-align: middle;
 }
 nav {
     font-size: 1.5em;
+    vertical-align: middle;
 }
-
+.dropdown-toggle {
+    color: white;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+#post1 {
+    font-size: 1.5em;
+}
 .fieldWrapper {
     margin-left: 36%;
     font-size: 1.2em;
@@ -74,3 +83,10 @@ nav {
 #jl {
     width: 100px;
 }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+  }

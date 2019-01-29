@@ -8,7 +8,7 @@
      {% if post.group %}
         <h3> Posted in : {{post.group.name}} </h3>
      {% endif %}
-        <h4> {{post.message_html|safe}}</h3>
+        <h4><b><u> {{post.message_html|safe}}</u></b></h3>
         <h4> Posted on: {{post.created_at|date:"M D, Y"}} </h4>
      <br>
      <br>

@@ -34,3 +34,4 @@ class CreateProfile(LoginRequiredMixin,CreateView):
 class DetailProfile(LoginRequiredMixin,DetailView):
     model = Profile
     template_name = 'Profile/profile_detail.html'
+    context_object_name = 'profile'
