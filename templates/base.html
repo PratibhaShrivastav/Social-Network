@@ -53,16 +53,20 @@
           Posts
           </a>-->
       <!--</li>-->
+      {% if request.user.Profile %}
        <li><a href="{% url "accounts:profile" username=request.user.username pk=request.user.pk%}" style="color:white">Profile</a>
       </li>&nbsp;&nbsp;&nbsp;
+      {% else %}
+        <li><a href="{% url "accounts:createprofile" username=request.user.username%}" style="color:white">Create Profile</a></li>&nbsp;&nbsp;&nbsp;
+      {% endif %}
       <li class="nav-item active">
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Group <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" id="link" data-toggle="dropdown" href="#">Group <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li id="post1"><a href="{% url "groups:all" %}">All Groups</a></li>
           <li id="post1"><a href="{% url "groups:create" %}">New Group</a></li>
         </ul>
       </li></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Post <span class="caret"></span></a>
+      <li class="dropdown"><a class="dropdown-toggle" id="link" data-toggle="dropdown" href="#">Post <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li id="post1"><a href="{% url "posts:all" %}">All Posts</a></li>
           <li id="post1"><a href="{% url "posts:create" %}">New Post</a></li>
