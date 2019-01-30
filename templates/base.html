@@ -38,7 +38,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="#">
+          <a href="{% url 'accounts:contactus' %}">
           <i class="fa fa-envelope-o">
+            </a>
           </i>
           Feedback
         </a>
@@ -53,12 +55,10 @@
           Posts
           </a>-->
       <!--</li>-->
-      {% if request.user.Profile %}
-       <li><a href="{% url "accounts:profile" username=request.user.username pk=request.user.pk%}" style="color:white">Profile</a>
-      </li>&nbsp;&nbsp;&nbsp;
-      {% else %}
-        <li><a href="{% url "accounts:createprofile" username=request.user.username%}" style="color:white">Create Profile</a></li>&nbsp;&nbsp;&nbsp;
-      {% endif %}
+       <li>
+        <a href="{% url 'accounts:verifyprofile' username=request.user.username %}" style="color:white">Profile</a>
+        </li>&nbsp;&nbsp;&nbsp;
+        
       <li class="nav-item active">
       <li class="dropdown"><a class="dropdown-toggle" id="link" data-toggle="dropdown" href="#">Group <span class="caret"></span></a>
         <ul class="dropdown-menu">

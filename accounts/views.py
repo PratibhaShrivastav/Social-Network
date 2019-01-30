@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth.models import User
 from django.views.generic import TemplateView,CreateView, DetailView
 from accounts.forms import CreateUserForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Profile
+from .models import Profile,ContactUs
 # Create your views here.
 
 
@@ -22,6 +23,8 @@ class CreateProfile(LoginRequiredMixin,CreateView):
     template_name = 'Profile/profile_form.html'
 
     def form_valid(self, form):
+        if Profile.objects.filter(user = self.request.user).exists():
+            return redirect('accounts:profile', username=self.request.user.username,pk=Profile.objects.filter(user = self.request.user)[0].pk)
         profile = form.save(commit=False)
         profile.user = self.request.user
         return super().form_valid(form)
@@ -34,4 +37,17 @@ class CreateProfile(LoginRequiredMixin,CreateView):
 class DetailProfile(LoginRequiredMixin,DetailView):
     model = Profile
     template_name = 'Profile/profile_detail.html'
-    context_object_name = 'profile'
+
+def VerifyProfile(request, username):
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except:
+        return redirect('accounts:createprofile', username=username)
+    return redirect('accounts:profile', username=username,pk=profile.pk)
+
+
+class ContactUs(CreateView):
+    model = ContactUs
+    template_name = 'Contact/contact_form.html'
+    fields = '__all__'    
+    success_url = reverse_lazy('home')
