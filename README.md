@@ -6,14 +6,14 @@ For Developers/Contributers: To Set up follow these steps -
 
    1. Run on git terminal
    
-     git clone https://github.com/PratibhaShrivastav/Linkedin`
+     git clone https://github.com/PratibhaShrivastav/Social-Network
 
 
    2. Change working directory to /LinkedIn
 
    3. make virtualenv
 
-     `virtual env <env-name>`
+     virtual env <env-name>
 
    4. Activate your virtual environment
 
@@ -31,7 +31,7 @@ For Developers/Contributers: To Set up follow these steps -
 
      python manage.py runserver <port>
 
-Features yet to be added :
+### Features yet to be added :
   
   1. Adding friends 
   
