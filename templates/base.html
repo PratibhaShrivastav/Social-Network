@@ -37,10 +37,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fa fa-envelope-o">
-          </i>
-          Messages
+        <a class="nav-link" href="{% url 'accounts:contactus' %}">
+          Feedback
         </a>
       </li>
     </ul>
@@ -48,16 +46,33 @@
     {% if user.is_authenticated %}
 
    <ul class="navbar-nav navbar-right">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url "posts:all" %}" id="one">
+     <!-- <li class="nav-item active">-->
+       <!-- <a class="nav-link" href="{% url "posts:all" %}" id="one">
           Posts
-          </a>
+          </a>-->
+      <!--</li>-->
+       <li>
+        <a href="{% url 'accounts:verifyprofile' username=request.user.username %}" style="color:white">Profile</a>
+        </li>&nbsp;&nbsp;&nbsp;
+        
+      <li class="nav-item active">
+      <li class="dropdown"><a class="dropdown-toggle" id="link" data-toggle="dropdown" href="#">Group <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li id="post1"><a href="{% url "groups:all" %}">All Groups</a></li>
+          <li id="post1"><a href="{% url "groups:create" %}">New Group</a></li>
+        </ul>
+      </li></li>
+      <li class="dropdown"><a class="dropdown-toggle" id="link" data-toggle="dropdown" href="#">Post <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li id="post1"><a href="{% url "posts:all" %}">All Posts</a></li>
+          <li id="post1"><a href="{% url "posts:create" %}">New Post</a></li>
+        </ul>
       </li>
-        <li class="nav-item active">
+      <!--  <li class="nav-item active">
         <a class="nav-link" href="{% url "groups:all"%}" id="one">
         Groups
-          </a>
-       <li class="nav-item active">
+          </a>-->
+       <!--<li class="nav-item active">
         <a class="nav-link" href="{% url "posts:create" %}" id="one">
           New Post
           </a>
@@ -67,12 +82,14 @@
         <a class="nav-link" href="{% url "groups:create"%}" id="one">
          Create group
           </a>
+      </li>-->
+      <li><a href="{% url "accounts:logout"%}" style="color:white">Logout</a>
       </li>
-        <li class="nav-item active">
+       <!-- <li class="nav-item active">
         <a class="nav-link" href="{% url "accounts:logout"%}" id="one">
          Logout
           </a>
-      </li>
+      </li>-->
     </ul>
       {% else %}
      <ul class="navbar-nav navbar-right">

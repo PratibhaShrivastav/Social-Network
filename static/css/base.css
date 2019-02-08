@@ -2,7 +2,7 @@ body {
 font-family: 'Source Sans Pro', sans-serif;
 }
 a {
-    color: darkblue;
+    color:darkblue;
 }
 a:hover{
 	color:orange;
@@ -18,11 +18,26 @@ a:hover{
     font-size: 1.6em;
     color: orange ;
     font-weight: bold;
+    vertical-align: middle;
 }
 nav {
     font-size: 1.5em;
+    vertical-align: middle;
 }
-
+.dropdown-toggle {
+    color: white;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+#link {
+    color: white;
+}
+#link:hover{
+    color: orange;
+}
+#post1 {
+    font-size: 1.5em;
+}
 .fieldWrapper {
     margin-left: 36%;
     font-size: 1.2em;
@@ -73,4 +88,23 @@ nav {
 }
 #jl {
     width: 100px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    margin: auto;
+    text-align: center;
+    background-color:lightblue;
+    margin-top: 50px;
+    font-size: 1.7em;
+  }
+#profilename{
+    font-size: 2.0em;
+    font-weight: bold;
+}
+.profileform{
+    width: 30%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 5%;
 }

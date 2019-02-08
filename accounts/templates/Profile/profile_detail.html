@@ -1,0 +1,17 @@
+
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="card">
+        <img src="{{ profile.profile_pic.url }}" alt="Your picture" style="width:90%;padding-top:15px;padding-left:45px;">
+        <h1 id="profilename">{{profile.user.username}}</h1>
+        {% if profile.gender == 'ML' %}
+        <p>MALE</p>
+        {% else %}
+        <p>FEMALE</p>
+        {% endif %}
+        <p><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{profile.user.email}}</p>
+        <p><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{profile.contact}}</p>
+    </div>
+{% endblock %}
