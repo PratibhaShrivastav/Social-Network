@@ -9,7 +9,7 @@ For Developers/Contributers: To Set up follow these steps -
      git clone https://github.com/PratibhaShrivastav/Social-Network
 
 
-   2. Change working directory to /LinkedIn
+   2. Change working directory to /Social-Network
 
    3. make virtualenv
 
