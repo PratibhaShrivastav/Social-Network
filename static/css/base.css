@@ -115,6 +115,8 @@ nav {
 
 #addbtn {
     font-weight: bold;
+    float: right;
+    margin-right: 80%;
 }
 .userlist {
     margin-left: 5%;
