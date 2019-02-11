@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic import TemplateView,CreateView, DetailView,ListView
 from accounts.forms import CreateUserForm
@@ -63,21 +64,21 @@ class AllUsers(LoginRequiredMixin,ListView):
         return User.objects.all().exclude(pk=self.request.user.pk)
 
 def send_request(request, *args, **kwargs):
-        print("hello")
         user1_id = request.user.pk
-        user2_id = kwargs.get('to_user')
+        user2_id = kwargs.get("to_user")
         status = 0
         relation = Friend()
         if user1_id < user2_id:
             relation.user_1 = User.objects.get(pk=user1_id)
-            realtion.user_2 = User.objects.get(pk=user2_id)
+            relation.user_2 = User.objects.get(pk=user2_id)
         else:
             relation.user_1 = User.objects.get(pk=user2_id)
             relation.user_2 = User.objects.get(pk=user1_id)
         check = Friend.objects.filter(user_1 = relation.user_1, user_2 = relation.user_2).count()
         if check:
-            return reverse_lazy('allusers', success=False)    
+            return HttpResponseRedirect(reverse_lazy('allusers'))    
         relation.status = status
         relation.action_id = User.objects.get(pk=user1_id)
         relation.save()
-        return reverse_lazy('allusers', success=True)
+        return HttpResponseRedirect(reverse_lazy('allusers'))
+        #return response({'success':True})
