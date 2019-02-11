@@ -30,3 +30,19 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return self.title
+
+class Friend(models.Model):
+    
+    STATUS_OPTIONS = (
+        (0,'PEND'),
+        (1,'ACPT'),
+        (2,'RJCT'),
+    )
+
+    user_1 = models.ForeignKey(auth.models.User, related_name='friend_user1',on_delete=models.CASCADE)
+    user_2 = models.ForeignKey(auth.models.User, related_name='friend_user2',on_delete=models.CASCADE)
+    action_id = models.ForeignKey(auth.models.User, related_name='friend_action',on_delete=models.CASCADE)
+    status = models.CharField(max_length=4, choices=STATUS_OPTIONS)
+
+    def __Str__(self):
+        return self.status
