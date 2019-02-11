@@ -18,6 +18,7 @@ from django.urls import path,include
 from accounts.views import HomePage
 from django.conf import settings
 from django.conf.urls.static import static
+from accounts.views import AllUsers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('group/',include('groups.urls')),
     path('posts/',include('posts.urls')),
+    path('all-users/',AllUsers.as_view(),name='allusers'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

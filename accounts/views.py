@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView,CreateView, DetailView
+from django.views.generic import TemplateView,CreateView, DetailView,ListView
 from accounts.forms import CreateUserForm
 from django.urls import reverse_lazy,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile,ContactUs
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -51,3 +52,9 @@ class ContactUs(CreateView):
     template_name = 'Contact/contact_form.html'
     fields = '__all__'    
     success_url = reverse_lazy('home')
+
+
+class AllUsers(ListView):
+    model=User
+    template_name='Users/allusers.html'
+    context_object_name='users'

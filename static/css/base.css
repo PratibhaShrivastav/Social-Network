@@ -95,7 +95,7 @@ nav {
     margin: auto;
     text-align: center;
     background-color:lightblue;
-    margin-top: 50px;
+    margin-top: 40px;
     font-size: 1.7em;
   }
 #profilename{
@@ -107,4 +107,15 @@ nav {
     margin-left:auto;
     margin-right: auto;
     margin-top: 5%;
+}
+#addfrndbtn {
+    float: right;
+    font-weight: bold;
+}
+
+#addbtn {
+    font-weight: bold;
+}
+.userlist {
+    margin-left: 5%;
 }

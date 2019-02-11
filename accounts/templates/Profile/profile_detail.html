@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <a class="btn btn-primary btn-lg" href="{% url 'allusers' %}" id="addfrndbtn"> Add friends </a>
     <div class="card">
         <img src="{{ profile.profile_pic.url }}" alt="Your picture" style="width:90%;padding-top:15px;padding-left:45px;">
         <h1 id="profilename">{{profile.user.username}}</h1>
@@ -11,7 +12,9 @@
         {% else %}
         <p>FEMALE</p>
         {% endif %}
+        {% if profile.user.email %}
         <p><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;{{profile.user.email}}</p>
+        {% endif %}
         <p><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{profile.contact}}</p>
     </div>
 {% endblock %}
